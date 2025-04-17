@@ -11,14 +11,13 @@ import MicOffIcon from '@mui/icons-material/MicOff'
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
-import server from '../utils/enviroment';
 import server from '../environment';
 
 const server_url = server;
 
 var connections = {};
 
-const peerConfigConnections = {  
+const peerConfigConnections = {
     "iceServers": [
         { "urls": "stun:stun.l.google.com:19302" }
     ]
@@ -384,15 +383,9 @@ export default function VideoMeetComponent() {
     }
 
     let handleVideo = () => {
-    const videoTrack = window.localStream?.getVideoTracks()[0];
-
-    if (videoTrack) {
-        const enabled = !videoTrack.enabled;
-        videoTrack.enabled = enabled;
-        setVideo(enabled);
+        setVideo(!video);
+        // getUserMedia();
     }
-};
-
     let handleAudio = () => {
         setAudio(!audio)
         // getUserMedia();
